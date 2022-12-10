@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       div#side_left{
+width: 400px;
+height:1300px;
+background-color:lightgrey;
+float:left;
+margin-top: 30px;
+margin-right: 10px;
+margin-left: 30px;
+padding: 10px;
+}
+#side_left_box{
+width:95%;
+height:45%;
+background-color:lightgrey;
+float:left;
+margin: 5px;
+}
+
+
+#mid_content{
+width:1500px;
+height:1300px;
+background-color:skyblue;
+float:left;
+margin-top: 30px;
+margin-left: 10px;
+margin-right: 10px;
+}
+
+#mid_side{
+width: 90%;
+height: 45%;
+margin-left: 5%;
+background-color: lightgrey;
+
+}
+#side_content_box{
+display: inline;
+background-color:skyblue;
+margin:5px;
+}
+#side_rigth{
+width:400px;
+height:1300px;
+background-color:lightgrey;
+float:left;
+margin-top: 30px;
+}
+#side_rigth_box{
+width:85%;
+height: 700px;
+background-color:gold;
+margin-left: 20px;
+margin-top:600px;
+
+}
+
+#etc_btn {
+      margin-top: 10%;
+      margin-bottom: 5px;
+      margin-left: 30%;
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 6px;
+      width: 150px;
+      height: 30px;
+      text-align: center;line-height: 150%;
+      
+    
+      
+    }
+
+    #etc_cal {
+      margin-top: 20px;
+      margin-bottom: 5px;
+      margin-left: 15%;
+      background-color: #fff;
+      padding: 70px;
+      border-radius: 6px;
+      width: 230px;
+      overflow: scroll;
+
+    }
+
+
+      
+    
+    #main{
+        margin-left: 10%;
+        margin-bottom: 10%;
+        margin-right: 10%;
+        width: 2500px;
+        height: 1500px;
+        background-color: skyblue;
+    }
+   
+    #tb1 { position:absolute; margin-left:50px; }
+#tb2 { position:absolute;display:none; margin-left:50px;}
+#tb3 {position:absolute;display:none; margin-left: 50px;}
+
+* {
+        margin: 0;
+        padding: 0;
+      }
+
+      .chat_wrap .header {
+        font-size: 14px;
+        padding: 15px 0;
+        background: #f18c7e;
+        color: white;
+        text-align: center;
+      }
+
+      .chat_wrap .chat {
+        padding-bottom: 80px;
+      }
+      .chat_wrap .chat ul {
+        width: 100%;
+        list-style: none;
+      }
+      .chat_wrap .chat ul li {
+        width: 100%;
+      }
+      .chat_wrap .chat ul li.left {
+        text-align: left;
+      }
+      .chat_wrap .chat ul li.right {
+        text-align: right;
+      }
+
+      .chat_wrap .chat ul li > div {
+        font-size: 13px;
+      }
+      .chat_wrap .chat ul li > div.sender {
+        margin: 10px 20px 0 20px;
+        font-weight: bold;
+      }
+      .chat_wrap .chat ul li > div.message {
+        display: inline-block;
+        word-break: break-all;
+        margin: 5px 20px;
+        max-width: 75%;
+        border: 1px solid #888;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #fcfcfc;
+        color: #555;
+        text-align: left;
+      }
+
+      .chat_wrap .input-div {
+       
+        bottom: 50;
+        width: 100%;
+        background-color: #fff;
+        text-align: center;
+        border-top: 1px solid #f18c7e;
+      }
+      .chat_wrap .input-div > textarea {
+        width: 100%;
+        height: 90px;
+        border: none;
+        padding: 10px;
+      }
+
+      .format {
+        display: none;
+      }
+
+/*여부분은 목록펼치기 */
+      details { margin:5px 0 10px; }
+        details > summary { background:#444; color:#fff; padding:10px; outline:0; border-radius:5px; cursor:pointer; transition:background 0.5s; text-align:left; box-shadow: 1px 1px 2px gray;}
+        details > summary::-webkit-details-marker { background:#444; color:#fff; background-size:contain; transform:rotate3d(0, 0, 1, 90deg); transition:transform 0.25s;}
+        details[open] > summary::-webkit-details-marker { transform:rotate3d(0, 0, 1, 180deg);}
+        details[open] > summary { background:#444;}
+        details[open] > summary ~ * { animation:reveal 0.5s;}
+        .tpt { background:#444; color:#fff; margin:5px 0 10px; padding:5px 10px; line-height:25px; border-radius:5px; box-shadow: 1px 1px 2px gray;}
+        
+        @keyframes reveal {
+            from { opacity:0; transform:translate3d(0, -30px, 0); }
+            to { opacity:1; transform:translate3d(0, 0, 0); }
+        }
+    </style>
+
+<script language="javascript">
+    function view(arg)
+    {
+    var t1 = document.getElementById("tb1");
+    var t2 = document.getElementById("tb2");
+    var t3 = document.getElementById("tb3");
+    
+    
+    if(arg == 1)
+    {
+    t1.style.display="block";
+    t2.style.display="none";
+    t3.style.display="none";
+    }
+    else if(arg == 2)
+    { 
+        
+    t2.style.display="block";
+    t1.style.display="none";
+    t3.style.display="none";
+    }
+    else
+    {
+      t2.style.display="none";
+    t1.style.display="none";
+    t3.style.display="block";
+    }
+
+    }
+
+    function td_copy(val){
+        var str = document.getElementsByTagName('td')[val].childNodes[0].nodeValue;
+        //td[번호]를 읽어와 안의 값을 str에 저장
+        alert(str);
+    }
+    const Chat = (function () {
+        const myName = "blue";
+
+        // init 함수
+        function init() {
+          // enter 키 이벤트
+          $(document).on("keydown", "div.input-div textarea", function (e) {
+            if (e.keyCode == 13 && !e.shiftKey) {
+              e.preventDefault();
+              const message = $(this).val();
+
+              // 메시지 전송
+              sendMessage(message);
+              // 입력창 clear
+              clearTextarea();
+            }
+          });
+        }
+
+        // 메세지 태그 생성
+        function createMessageTag(LR_className, senderName, message) {
+          // 형식 가져오기
+          let chatLi = $("div.chat.format ul li").clone();
+
+          // 값 채우기
+          chatLi.addClass(LR_className);
+          chatLi.find(".sender span").text(senderName);
+          chatLi.find(".message span").text(message);
+
+          return chatLi;
+        }
+
+        // 메세지 태그 append
+        function appendMessageTag(LR_className, senderName, message) {
+          const chatLi = createMessageTag(LR_className, senderName, message);
+
+          $("div.chat:not(.format) ul").append(chatLi);
+
+          // 스크롤바 아래 고정
+          $("div.chat").scrollTop($("div.chat").prop("scrollHeight"));
+        }
+
+        // 메세지 전송
+        function sendMessage(message) {
+          // 서버에 전송하는 코드로 후에 대체
+          const data = {
+            senderName: "blue",
+            message: message,
+          };
+
+          // 통신하는 기능이 없으므로 여기서 receive
+          resive(data);
+        }
+
+        // 메세지 입력박스 내용 지우기
+        function clearTextarea() {
+          $("div.input-div textarea").val("");
+        }
+
+        // 메세지 수신
+        function resive(data) {
+          const LR = data.senderName != myName ? "left" : "right";
+          appendMessageTag("right", data.senderName, data.message);
+        }
+
+        return {
+          init: init,
+        };
+      })();
+
+      $(function () {
+        Chat.init();
+      });
+    </script>
+
+</head>
+<body>
+    <div id="main">
+
+      <!--ddddddddddddddddcddddddd-->
+    <div id = "side_left", style="text-align:center; line-height: 20px;">
+        <img src="jbup.png" alt="">
+        <div id = "side_left_box">
+            <img src="bonono.png" style="width:40%">
+            <p>정보보호학</p>
+            <br><p>91812505</p>
+            <br><p>손진빈</p>
+            <br><p>3학년</p>
+            <br><button>내 정보</button>
+            <button type="button" onclick="location.href='index.html'">로그아웃</button>
+        </div>
+        <div id = "side_left_box", style="text-align: center;"><br><br> 
+            <div id="etc_btn">
+                <a>교양과목</a>
+                <button style="float: right; background-color: skyblue;" >조회</button>
+                
+              </div>
+              <div id = "etc_btn"><a href="">재수강</a>
+                <button type="button" style="float: right; background-color: skyblue;" 
+                onclick="location.href=''">조회</button>
+            </div>
+
+
+
+            <div id = "etc_cal", style="width:150px; height:50px; overflow:scroll;">학점 계산기</a>
+                <table border="1","width = "250px" height = "100px">
+                    <th>과목명</th>
+                    <th>학점</th>
+                    <th>성적</th>
+                    <tr>
+                        <td>시스템보안</td><td>3</td><td>A+</td></tr>
+                    <tr>
+                        <td>디지털포렌식</td><td>3</td><td>A+</td></tr>
+                    <tr>
+                        <td>캡스톤디자인</td><td>3</td><td>A+</td></tr>
+                    <tr>
+                        <td>대생지</td><td>1</td><td>P</td></tr>
+                    <tr>
+                        <td>영화와문학속의프랑스역사</td><td>2</td><td>A+</td></tr>
+                    <tr>
+                        <td>생활속건축의이해</td><td>2</td><td>A+</td></tr>
+                    <tr>
+                        <td>디지털시대의감정커뮤니케이션</td><td>2</td><td>A+</td></tr>
+                    <tr>
+                        <td>나라살림이해하기</td><td>2</td><td>A+</td></tr>
+                    <tr>
+                        <td>창의적사고</td><td>1</td><td>A+</td></tr>
+                
+                </table>
+                </div>
+
+
+                
+                
+                <div id = "etc_btn"><a href="//edu.joongbu.ac.kr/">중부대학교 lms</a>
+            
+              </div>
+            </div>
+              </div>
+              <!--ddddddddddddddddcddddddd--><!--ddddddddddddddddcddddddd--><!--ddddddddddddddddcddddddd--><!--ddddddddddddddddcddddddd-->
+        
+        
+        
+    
+    <div id = "mid_content">
+
+        <div id = "side_content_box">
+            <div id = "mid_side">
+            <input type="text" id="tdVal"/><input type="button" onclick="td_copy(tdVal.value)" value="입력"/>
+<table border="1" bgcolor="white"  width = "1200" height = "500" align="center" style="margin-left: 30px;">
+<th><details><summary>신청</summary>
+    <div class="tpt">details 과 summary 그리고 css까지 적용</div></details></th>
+<th><details><summary>이수구분</summary>
+    <div class="tpt"><p>교필</p><br><p>교선</p><br><p>전필</p></div></details></th>
+<th><details><summary>학년</summary>
+    <div class="tpt"><p>1</p><p>2</p><p>3</p><p>4</p></div></details></th>
+<th><details><summary>과목코드</summary>
+    <div class="tpt"><p>abc</p><br><p>bbc</p></div></details></th>
+<th><details><summary>과목명</summary>
+    <div class="tpt"><p>교양입니다</p><br><p>교선입니다</p></div></details></th>
+<th><details><summary>학점</summary>
+    <div class="tpt"><p>1</p><br><p>2</p><br><p>3</p></div></details></th>
+<th><details><summary>교양영역</summary>
+    <div class="tpt"><p>글로벌</p><br><p>미디어</p></div></details></th>
+<th><details><summary>담당교수</summary>
+    <div class="tpt"><p>교수님이름</p><br><p>교수님이름2</p></div></details></th>
+<th><details><summary>강의시간</summary>
+    <div class="tpt"><p>월요일</p><br><p>화요일</p></div></details></th>
+<th><details><summary>강의실</summary>
+    <div class="tpt"><p>815</p><br><p>315</p></div></details></th>
+<th><details><summary>신청/제한인원</summary>
+    <div class="tpt"><p>30명제한</p><br><p>40명제한</p></div></details></th>
+<th><details><summary>평점</summary>
+    <div class="tpt"><p>40점이상</p><br><p>30점이상</p><br><p>20점이상</p><br><p>10점이상</p></div></details></th>
+<tr><td align="center"><input type="button" value="신청" onclick=""> </td><td>교필</td><td>2</td><td>abc</td>
+   <td>교양입니다</td> <td>1</td><td>글로벌</td><td>교수님이름</td><td>월요일(5)</td><td>815호</td><td>n/30</td><td>44/50</td></tr>
+   <tr><td align="center"><input type="button" value="신청" onclick=""> </td><td>교선</td><td>3</td><td>bbc</td>
+    <td>교선입니다</td> <td>2</td><td>미디어</td><td>교수님이름2</td><td>화요일(5)</td><td>315호</td><td>n/40</td><td>45/50</td></tr>
+<tr><td align="center"><input type="button" value="신청" onclick=""></td><td>전필</td><td>2</td><td>cca</td><td>정보학개론</td><td>3
+</td><td>정보학</td><td>교수님이름3</td><td>수요일(2)</td><td>833호</td><td>n/20</td><td>50/50</td></tr>
+<tr><td align="center"><input type="button" value="신청" onclick=""> </td><td>교선</td><td></td><td></td><td></td><td>
+</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td align="center"><input type="button" value="신청" onclick=""> </td><td></td><td></td><td></td><td>
+</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td align="center"><input type="button" value="신청" onclick=""> </td></td><td></td><td></td><td></td><td></td>
+</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td align="center"><input type="button" value="신청" onclick=""> </td></td><td></td><td></td><td></td><td></td>
+</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td align="center"><input type="button" value="신청" onclick=""> </td></td><td></td><td></td><td></td><td></td>
+</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td align="center"><input type="button" value="신청" onclick=""> </td></td><td></td><td></td><td></td><td></td>
+</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td align="center"><input type="button" value="신청" onclick=""> </td></td><td></td><td></td><td></td><td></td>
+</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td align="center"><input type="button" value="신청" onclick=""> </td></td><td></td><td></td><td></td><td></td>
+</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+
+
+</div>
+</div>
+        
+        
+        
+        <div id = "side_content_box">
+            <div id = "mid_side">
+            <p>장바구니 리스트</p>
+            <input type="button" value="slot1" onClick="view(1)">
+        <input type="button" value="slot2" onClick="view(2)">
+        <input type="button" value="slot3" onClick="view(3)">
+
+            <table id="tb1"  border="1" width = "1200" height = "500" align="center" bgcolor="white" 
+            >
+            <th></th>
+            <th width="1000">월</th>
+            <th width="1000">화</th>
+            <th width="1000">수</th>
+            <th width="1000">목</th>
+            <th width="1000">금</th>
+            <tr><td align="center">1교시(9:10~10:00)</td><td rowspan="2" bgcolor="blue" align="center">미디어세상<td></td><td rowspan="3" bgcolor="skyblue" align="center">암호수학</td><td></td><td></td></tr>
+            <tr><td align="center">2교시(10:10~11:00)</td><td></td><td rowspan="2" bgcolor="pink" align="center">웹 프로그래밍</td><td></td><td></td><td></td></tr>
+            <tr><td align="center">3교시(11:10~12:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">4교시(12:10~1:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">5교시(1:10~2:00)</td><td></td><td rowspan="2" bgcolor="pink" align="center">웹 프로그래밍</td><td></td><td></td><td></td></tr>
+            <tr><td align="center">6교시(2:10~3:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">7교시(3:10~4:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">8교시(4:10~5:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">9교시(5:10~6:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            
+            
+
+
+
+        </table>
+    
+        <table id="tb2"  border="1" width = "1200" height = "500" align="center" bgcolor="white"
+            >
+            <th></th>
+            <th width="1000">월1</th>
+            <th width="1000">화</th>
+            <th width="1000">수</th>
+            <th width="1000">목</th>
+            <th width="1000">금</th>
+            <tr><td align="center">1교시(9:10~10:00)</td><td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">2교시(10:10~11:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">3교시(11:10~12:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">4교시(12:10~1:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">5교시(1:10~2:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">6교시(2:10~3:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">7교시(3:10~4:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">8교시(4:10~5:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">9교시(5:10~6:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            
+            
+
+
+
+        </table>
+
+
+        <table id="tb3"  border="1" width = "1200" height = "500" align="center" bgcolor="white"
+            >
+            <th></th>
+            <th width="1000">월2</th>
+            <th width="1000">화</th>
+            <th width="1000">수</th>
+            <th width="1000">목</th>
+            <th width="1000">금</th>
+            <tr><td align="center">1교시(9:10~10:00)</td><td rowspan="2" bgcolor="green" align="center">암호수학<td><td><td rowspan="2" bgcolor="skyblue" align="center">건축학개론<td></td></td></td></td></td></tr>
+            <tr><td align="center">2교시(10:10~11:00)</td><td rowspan="2" bgcolor="orange" align="center">캡스톤디자인</td><td rowspan="2" bgcolor="yellow" align="center">보안프로그래밍<td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">3교시(11:10~12:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">4교시(12:10~1:00)</td><td></td><td></td><td>
+            </td><td></td><td></td></tr>
+            <tr><td align="center">5교시(1:10~2:00)</td><td rowspan="2" bgcolor="yellow" align="center">보안프로그래밍</td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">6교시(2:10~3:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">7교시(3:10~4:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">8교시(4:10~5:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            <tr><td align="center">9교시(5:10~6:00)</td><td></td><td><td><td><td></td></td></td></td></td></tr>
+            
+            
+
+
+
+        </table>
+
+        
+           
+            
+
+        
+        
+    
+        
+    </div>
+</div>
+</div>
+
+    <div id = "side_rigth">
+        <div id = "side_rigth_box" style="overflow:scroll; width:350px; height:300px; ">
+            <div class="chat_wrap">
+                <div class="header">CHAT</div>
+                <div class="chat">
+                  <ul>
+                    <!-- 동적 생성 -->
+                  </ul>
+                </div>
+                
+              </div>
+        </div>
+        <div class="input-div">
+                  <textarea placeholder="Press Enter for send message."></textarea>
+                </div>
+          
+                <!-- format -->
+          
+                <div class="chat format">
+                  <ul>
+                    <li>
+                      <div class="sender">
+                        <span></span>
+                      </div>
+                      <div class="message">
+                        <span></span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+        <input type="button" onclick="td_copy(tdVal.value)" value="입력"/>
+    </div>
+</div>
+</body>
+</html>
